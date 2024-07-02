@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculation Details</title>
-    <link rel="stylesheet" href="/static/styles/appstyle.css">
+    <link rel="stylesheet" href="/static/styles/detailspage.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container-align">
-    <h2>Calculation Details</h2>
-    <div>
-        <p><strong>Principal:</strong> {{ details.principal }}</p>
-        <p><strong>Start Date:</strong> {{ details.start_date.strftime('%d-%m-%Y') }}</p>
-        <p><strong>End Date:</strong> {{ details.end_date.strftime('%d-%m-%Y') }}</p>
-        <p><strong>Interest:</strong> {{ details.simple_interest }}</p>
-        <p><strong>Amount:</strong> {{ details.amount }}</p>
-        <p><strong>Today Included :</strong> {{ details.today_included }}</p>
-        <a href="/" class="button">Back to Homepage</a>
+    <div class="container container-align">
+        <h2 class="text-center mb-4">Calculation Details</h2>
+        <div>
+            <p><strong>Principal:</strong> {{ details.principal }}</p>
+            <p><strong>Start Date:</strong> {{ details.start_date.strftime('%d-%m-%Y') }}</p>
+            <p><strong>End Date:</strong> {{ details.end_date.strftime('%d-%m-%Y') }}</p>
+            <p><strong>Days Difference:</strong> {{ details.days_diff }}</p>
+            <p><strong>Interest:</strong> {{ details.simple_interest }}</p>
+            <p><strong>Amount:</strong> {{ details.amount }}</p>
+            <p><strong>Today Included:</strong> {% if details.today_included %} Yes {% else %} No {% endif %}</p>
+            <a href="/" class="btn btn-primary btn-block">Back to Homepage</a>
+        </div>
     </div>
 </div>
 </body>
