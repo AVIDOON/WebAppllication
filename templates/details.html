@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation Details</title>
+    <link rel="stylesheet" href="/static/styles/appstyle.css">
+</head>
+<body>
+    <div class="container-align">
+    <h2>Calculation Details</h2>
+    <div>
+        <p><strong>Principal:</strong> {{ details.principal }}</p>
+        <p><strong>Start Date:</strong> {{ details.start_date.strftime('%d-%m-%Y') }}</p>
+        <p><strong>End Date:</strong> {{ details.end_date.strftime('%d-%m-%Y') }}</p>
+        <p><strong>Interest:</strong> {{ details.simple_interest }}</p>
+        <p><strong>Amount:</strong> {{ details.amount }}</p>
+        <p><strong>Today Included :</strong> {{ details.today_included }}</p>
+        <a href="/" class="button">Back to Homepage</a>
+    </div>
+</div>
+</body>
+</html>
