@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask SI Calculator</title>
+  <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <h2>Enter Details</h2>
+    <form method="POST" action="/">
+        <label for="principal">Principal:</label><br>
+        <input type="text" id="principal" name="principal" required><br><br>
+
+        <label for="start_date">Start Date:</label><br>
+        <div>
+            <input type="date" id="start_date" name="start_date" required>
+            <input type="button" value="Today" onclick="setToday('start_date')"><br><br>
+        </div>
+
+        <label for="end_date">End Date:</label><br>
+        <div>
+            <input type="date" id="end_date" name="end_date" required>
+            <input type="button" value="Today" onclick="setToday('end_date')"><br><br>
+        </div>
+
+        <input type="submit" value="Calculate" onclick="calculateInterest()">
+    </form>
+
+    <div id="amountContainer"></div>
+
+    <script>
+    function setToday(fieldId) {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementById(fieldId).value = today;
+        }
+
+        function calculateAmount() {
+            // Get form data
+            var principal = document.getElementById("principal").value;
+            var rate = document.getElementById("rate").value;
+            var start_date = document.getElementById("start_date").value;
+            var end_date = document.getElementById("end_date").value;
+
+            // Make AJAX request to Flask backend
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById("amountContainer").innerHTML = "Calculated Amount: " + response.amount;
+                }
+            };
+            var formData = JSON.stringify({
+                principal: principal,
+                rate: rate,
+                start_date: start_date,
+                end_date: end_date
+            });
+            xhr.send(formData);
+        }
+    </script>
+</body>
+</html>
